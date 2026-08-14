@@ -8,8 +8,10 @@
 *Status runner di menu **Settings > Actions > Runners** di GitHub sekarang akan berubah menjadi **Idle** (Hijau).*
 4. untuk automatis (instal sebagai service)
 ```bash
-sudo ./svc.sh install
-sudo ./svc.sh start
+# untuk install, jalankan dan cek status
+sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
+# untuk uninstall, stop dan cek status
+sudo ./svc.sh stop && sudo ./svc.sh uninstall && sudo ./svc.sh status
 ```
 5. buat folder pada direktory default nginx. jika `<NAMA_PROYEK>` dibuat oleh root (harusnya dia sih yang buat) dan runner dijalankan oleh `user`, ubah kepemilikan
 ```bash
