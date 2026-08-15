@@ -1,6 +1,10 @@
 
 ---
-### Github Action Runners a Repository
+---
+---
+---
+---
+### TRADISIONAL
 `Note : Dirancang untuk private repo`
 1. Buka Repo > setting > actions > runners
 2. Ikuti langkahnya
@@ -13,10 +17,12 @@ sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
 # untuk uninstall, stop dan cek status
 sudo ./svc.sh stop && sudo ./svc.sh uninstall && sudo ./svc.sh status
 ```
-5. buat folder pada direktory default nginx. jika `<NAMA_PROYEK>` dibuat oleh root (harusnya dia sih yang buat) dan runner dijalankan oleh `user`, ubah kepemilikan
+5. buat folder pada direktory default nginx.
 ```bash
+# buat direktori
+mkdir /var/www/testdir
 # ubah kepemilkan beserta isnya
-sudo chown -R <USER>:<USER> /var/www/<NAMA_PROYEK>
+sudo chown -R ${USER}:${USER} /var/www/<NAMA_PROYEK>
 # ubah permission
 sudo chmod -R 755 /var/www/<NAMA_PROYEK>
 ```
@@ -44,3 +50,8 @@ jobs:
 ```
 7. Coba commit repo, jika berhasil maka ada proyek repo di server. untuk runner **`organisasi`** / **`enterprise`** mirip, kita hanya lanjut dari config karena yang membedakan hanyalah di mana Anda mendaftarkannya (token registrasi yang Anda salin saat menjalankan perintah `./config.sh`
 ---
+---
+---
+---
+---
+### 
