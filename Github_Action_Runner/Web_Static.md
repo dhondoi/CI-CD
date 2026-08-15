@@ -4,8 +4,8 @@
 ---
 ---
 ---
-### TRADISIONAL
 `Note : Dirancang untuk private repo`
+### TRADISIONAL
 1. Buka Repo > setting > actions > runners.
 2. Ikuti langkahnya (jika list tahap `install runner` sudah dilakukan, skip ke tahap list `config dst`) yang diperlukan pada server.
 3. untuk jalankan secara manual gunakan `run.sh` <br/>
@@ -57,7 +57,8 @@ jobs:
 ### DOCKER
 1. mari coba buat repo baru
 2. ikuti langkah 1-3 [TRADISONAL](#TRADISIONAL)
-3. buat file `index.html`
+3. jika error saat config hapus dulu config sebelumnya `./config.sh remove` nanti diminta masukan token dari proyek sebelumnya
+4. di repo buat file `index.html`
 ```html
 <!DOCTYPE html>
 <html lang="id">
@@ -71,7 +72,7 @@ jobs:
 </body>
 </html>
 ```
-3. buat `.Dockerfile`
+3. buat `Dockerfile`
 ```Dockerfile
 # Gunakan Nginx versi ringan
 FROM nginx:alpine
@@ -82,7 +83,7 @@ COPY index.html /usr/share/nginx/html/index.html
 # Buka port 80
 EXPOSE 80
 ```
-4. buat `.github/workflows/deploy.yml` (konfigurasi CI/CD)
+4. buat `.github/workflows/deploy.yml` (konfigurasi CI/CD) <br/>
 ```yml
 name: Deploy Web Statis
 
@@ -97,7 +98,7 @@ jobs:
     steps:
       - name: Ambil Kode Terbaru
         uses: actions/checkout@v4
-
+        
       - name: Build Image Web Statis
         run: docker build -t web-statis:v1 .
 
@@ -107,8 +108,9 @@ jobs:
           docker rm web-statis-container || true
           docker run -d \
             --name web-statis-container \
-            -p 80:80 \
+            -p 8080:80 \
             --restart always \
             web-statis:v1
 ```
+5. di server untuk jalankan secara manual gunakan `run.sh`
 ---
