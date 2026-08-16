@@ -112,5 +112,6 @@ jobs:
             --restart always \
             web-statis:v1
 ```
-5. di server untuk jalankan secara manual gunakan `run.sh`
+5. di server untuk jalankan secara manual gunakan `run.sh` atau bisa langsung terintegrasi ke server jika service runner diaktifkan dan dijalankan. nanti di tab github actions pada repo kita harusnya push terakhir melambangkan hijau (sukses).
+6. setting nginx yang mengarah ke port (dalam hal ini 8080), istilahnya reverse proxy atau bisa langsung mengarah ke cloudflare tunnel.
 ---
