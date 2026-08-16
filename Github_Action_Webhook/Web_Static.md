@@ -46,6 +46,8 @@ Pengaturan trigger-rule memastikan hanya permintaan yang menyertakan token rahas
 5. Jalankan service webhook di latar belakang (secara default berjalan di port 9000):
 ```Bash
 webhook -hooks /opt/scripts/hooks.json -verbose &
+```
+```Bash
 # cek port yang berjalan
 ss -tunlp
 ```
