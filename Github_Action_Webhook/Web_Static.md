@@ -4,11 +4,30 @@
 ---
 ---
 # TRADISIONAL
-1. Buat berkas skrip Bash di VPS (misalnya /opt/scripts/deploy.sh) yang berisi perintah pull dan build aplikasi Anda: 
-```Bash
-#!/bin/bash
-cd /var/www/my-app
+1. Buat berkas skrip Bash di VPS (misalnya /opt/scripts/deploy.sh) yang berisi perintah pull dan build aplikasi Anda:
+- buat direktori
+  ```bash
+  mkdir /opt/scripts
+  ```
+- buat file
+  ```bash
+  touch /opt/scripts/deploy.sh
+  ```
+  
+- nano
+  ```bash
+  nano /opt/scripts/deploy.sh
+  ```
+- isi file
+  ```sh title="deploy.sh"
+  #!/bin/bash
+  cd /var/www/my-app
+  ```
+  ```python:main.py
+def halo():
+    print("Halo!")
 ```
+
 2. Beri izin eksekusi pada berkas tersebut:
 ```Bash
 chmod +x /opt/scripts/deploy.sh
@@ -22,6 +41,10 @@ Install utilitas webhook di VPS Ubuntu/Debian:
 sudo apt update && sudo apt install webhook -y
 ```
 4. Buat berkas konfigurasi /opt/scripts/hooks.json:
+```bash
+touch /opt/scripts/hooks.json
+```
+isi
 ```JSON
 [
   {
