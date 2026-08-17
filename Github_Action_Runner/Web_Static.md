@@ -8,16 +8,11 @@
 ### TRADISIONAL
 1. Buka Repo > setting > actions > runners.
 2. Ikuti langkahnya (jika list tahap `install runner` sudah dilakukan, skip ke tahap list `config dst`) yang diperlukan pada server.
-3. untuk jalankan secara manual gunakan `run.sh` <br/>
-*Status runner di menu **Settings > Actions > Runners** di GitHub sekarang akan berubah menjadi **Idle** (Hijau).*
-4. untuk automatis (instal sebagai service)
+3. extract 
 ```bash
-# untuk install, jalankan dan cek status
-sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
-# untuk uninstall, stop dan cek status
-sudo ./svc.sh stop && sudo ./svc.sh uninstall && sudo ./svc.sh status
+tar xzf ./actions-runner-linux-arm64-2.336.0.tar.gz [-C <dir_dest>] [-v]
 ```
-5. buat folder pada direktory default nginx.
+4. buat folder pada direktory default nginx.
 ```bash
 # buat direktori
 mkdir /var/www/testdir
@@ -26,7 +21,7 @@ sudo chown -R ${USER}:${USER} /var/www/<NAMA_PROYEK>
 # ubah permission
 sudo chmod -R 755 /var/www/<NAMA_PROYEK>
 ```
-6. simpan buat konfigurasi `.github/worflows/deploy.yml`
+5. simpan buat konfigurasi `.github/workflows/deploy.yml`
 ```yml
 name: Deploy Web Statis via Self-Hosted Runner
 
@@ -46,9 +41,21 @@ jobs:
 
       - name: Salin file ke direktori Nginx
         run: |
-          rsync -av --delete --exclude='.git*' ./ /var/www/html/<NAMA_PROYEK>
+          rsync -av --delete --exclude='.git*' ./ /var/www/<NAMA_PROYEK>
 ```
-7. Coba commit repo, jika berhasil maka ada proyek repo di server. untuk runner **`organisasi`** / **`enterprise`** mirip, kita hanya lanjut dari config karena yang membedakan hanyalah di mana Anda mendaftarkannya (token registrasi yang Anda salin saat menjalankan perintah `./config.sh`
+6. untuk jalankan secara manual gunakan `run.sh` <br/>
+*Status runner di menu **Settings > Actions > Runners** di GitHub sekarang akan berubah menjadi **Idle** (Hijau).*
+7. untuk automatis (instal sebagai service)
+```bash
+# untuk install, jalankan dan cek status
+sudo ./svc.sh install && sudo ./svc.sh start && sudo ./svc.sh status
+# untuk uninstall, stop dan cek status
+sudo ./svc.sh stop && sudo ./svc.sh uninstall && sudo ./svc.sh status
+```
+8. Coba commit repo, jika berhasil maka ada proyek repo di server. untuk runner **`organisasi`** / **`enterprise`** mirip, kita hanya lanjut dari config karena yang membedakan hanyalah di mana Anda mendaftarkannya (token registrasi yang Anda salin saat menjalankan perintah `./config.sh`
+9. config nginx untuk pointing ke dir proyek.
+10. `sudo ln -s /etc/nginx/sites-available/domainanda.com /etc/nginx/sites-enabled/`
+11. `sudo nginx -t && sudo systemctl reload nginx && sudo systemctl status nginx`
 ---
 ---
 ---
